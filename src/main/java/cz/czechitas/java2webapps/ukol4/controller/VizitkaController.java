@@ -1,9 +1,11 @@
-package cz.czechitas.java2webapps.ukol3.controller;
+package cz.czechitas.java2webapps.ukol4.controller;
 
-import cz.czechitas.java2webapps.ukol3.service.VizitkaService;
+import cz.czechitas.java2webapps.ukol4.entity.Vizitka;
+import cz.czechitas.java2webapps.ukol4.service.VizitkaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -20,7 +22,7 @@ public class VizitkaController {
     @GetMapping("/")
     public ModelAndView seznam() {
         ModelAndView result = new ModelAndView("seznam");
-        result.addObject("seznam", service.getAll());
+        result.addObject("vizitky", service.getAll());
         return result;
     }
 
@@ -29,5 +31,17 @@ public class VizitkaController {
         ModelAndView result = new ModelAndView("detail");
         result.addObject("vizitka", service.getById(id));
         return result;
+    }
+
+    @PostMapping("/nova")
+    public String create(Vizitka vizitka) {
+        service.create(vizitka);
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete")
+    public String delete(int id) {
+        service.deleteById(id);
+        return "redirect:/";
     }
 }
