@@ -1,12 +1,10 @@
 [#ftl]
-    <meta charset="UTF-8">
-    <title>Vizitkovník</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    [#include "_common/head.ftlh"]
 </head>
+
 <body>
 <div class="detail">
     <div class="vizitka">
@@ -18,13 +16,13 @@
                 <div>${vizitka.obecPsc}</div>
             </div>
             <div class="kontakty">
-                [#if vizitka.email??]
+                [#if vizitka.email?has_content]
                     <div><i class="las la-at"></i> <span>${vizitka.email}</span></div>
                 [/#if]
-                [#if vizitka.telefon??]
+                [#if vizitka.telefon?has_content]
                     <div><i class="las la-phone-alt"></i> <span>${vizitka.telefon}</span></div>
                 [/#if]
-                [#if vizitka.web??]
+                [#if vizitka.web?has_content]
                     <div><i class="las la-globe"></i> <span>${vizitka.web}</span></div>
                 [/#if]
             </div>
